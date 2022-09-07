@@ -1,0 +1,15 @@
+import bs4, re
+for OI in range(2):
+   messagesFile = open(r'C:\Users\Win 10 Pro\Downloads\Telegram Desktop\messages_OI_%s.html' % (OI + 1), encoding='utf-8')
+   messagesFile1 = messagesFile.read()
+   with open(r'C:\Users\Win 10 Pro\news_sources\OI.txt', 'a', encoding='utf-8') as file: 
+       exampleSoup = bs4.BeautifulSoup(messagesFile1, features="lxml")
+       title1 = exampleSoup.find_all('div', {'class': 'text'})
+       for title1 in exampleSoup.find_all('div', {'class': 'text'}):
+                print(title1.text, file=file)
+      
+readyTexts = open(r'C:\Users\Win 10 Pro\news_sources\OI.txt', encoding = 'utf-8')
+readyTexts1 = readyTexts.read()
+Ze = re.compile(r'\n(.*?нампишут .*?)Одесса INFO . Скинуть новость')
+li = Ze.findall(readyTexts1)
+print('\n'.join(li))
