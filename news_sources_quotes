@@ -1,0 +1,9 @@
+import re
+for i in range(24):
+    newsFile = open(r'news_item_%s.txt' % (i +1), encoding='utf-8')
+    newsFile1 = newsFile.read()
+    with open(r'results_sources.txt', 'a', encoding='utf-8') as file:
+        print('-------%s-------' % (i +1), file=file)
+        q_source = re.compile(r'[»”"],\s[–-].*?([А-ЯІЇЄЗҐA-Z]\w+)[.,]') #, - зазначив Порошенко
+        qst = q_source.findall(newsFile1)
+        print('\n'.join(qst), file=file)
